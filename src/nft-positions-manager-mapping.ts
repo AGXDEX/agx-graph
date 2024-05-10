@@ -6,7 +6,8 @@ import {
   IncreaseLiquidity,
   Transfer,
 } from '../generated/NFTPositionsManager/NFTPositionsManager';
-import { Position } from '../generated/schema';
+import { NFT } from '../generated/schema';
+import { ethereum, crypto,store } from '@graphprotocol/graph-ts';
 
 export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
   let entity = Position.load(event.params.tokenId.toHex());
@@ -31,23 +32,17 @@ export function handleDecreaseLiquidity(event: DecreaseLiquidity): void {
 }
 
 export function handleTransfer(event: Transfer): void {
-  let entity = Position.load(event.params.tokenId.toHex());
+  let entity = NFT.load(event.params.tokenId.toHex());
   if (entity != null) {
-    entity.oldOwner = event.params.from;
+    entity.
     entity.owner = event.params.to;
-    entity.approved = null;
+    entity.save();
+  }else{
+    entity = new NFT(event.params.tokenId.toHex());
+    entity.tokenId = event.params.tokenId
+    entity.owner = event.params.to;
     entity.save();
   }
+
 }
 
-export function handleApproval(event: Approval): void {
-  let entity = Position.load(event.params.tokenId.toHex());
-  if (entity != null) {
-    entity.approved = event.params.approved;
-    entity.save();
-  }
-}
-
-export function handleApprovalForAll(event: ApprovalForAll): void {}
-
-export function handleCollect(event: Collect): void {}
