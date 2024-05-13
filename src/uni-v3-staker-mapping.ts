@@ -1,11 +1,11 @@
-import { ethereum, crypto,store } from '@graphprotocol/graph-ts';
+import { ethereum, crypto,store,BigInt } from '@graphprotocol/graph-ts';
 import {
-  DepositTransferred,
+  DepositTransferred, IncentiveCreated,
   RewardClaimed,
   TokenStaked,
   TokenUnstaked,
 } from '../generated/UniV3Staker/UniV3Staker';
-import {  Position } from '../generated/schema';
+import {Incentive, Position} from '../generated/schema';
 
 
 
@@ -24,6 +24,7 @@ export function handleTokenUnstaked(event: TokenUnstaked): void {
   let entity = Position.load(event.params.tokenId.toHex());
   if (entity != null) {
     entity.staked = false;
+    entity.liquidity = BigInt.fromI32(0);
     entity.incentiveId = null;
     entity.save();
   }

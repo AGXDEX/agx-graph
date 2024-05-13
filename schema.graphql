@@ -1,19 +1,29 @@
 type NFT @entity{
      id: ID!
      tokenId: BigInt!
+     token0Amount: BigInt!
+     token1Amount: BigInt!
      owner: Bytes!
      liquidity: BigInt
 }
 
+type Incentive @entity{
+     id: ID!
+     incentiveId: Bytes!
+     liquidity: BigInt!
+
+}
 type Position @entity {
   id: ID!
   tokenId: BigInt!
   owner: Bytes!
   staked: Boolean!
-  liquidity: BigInt
+  liquidity: BigInt!
   incentiveId: Bytes
   approved: Bytes
 }
+
+
 
 type SwapInfo @entity {
   id: Bytes!
