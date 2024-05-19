@@ -51,6 +51,8 @@ dataSources:
           handler: handleTokenStaked
         - event: TokenUnstaked(indexed uint256,indexed bytes32)
           handler: handleTokenUnstaked
+        - event: RewardClaimed(indexed address,uint256)
+          handler: handleRewardClaimed
       file: ./src/uni-v3-staker-mapping.ts
   - kind: ethereum/contract
     name: Router

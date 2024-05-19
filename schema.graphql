@@ -10,7 +10,9 @@ type NFT @entity{
 type Incentive @entity{
      id: ID!
      liquidity: BigInt!
+     claimedToken: BigInt!
 }
+
 
 type Position @entity {
   id: ID!

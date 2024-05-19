@@ -1,19 +1,29 @@
 import { ethereum, crypto,store,BigInt } from '@graphprotocol/graph-ts';
 import {
   DepositTransferred, IncentiveCreated,
-  RewardClaimed,
+  RewardClaimed, RewardClaimed__Params,
   TokenStaked,
   TokenUnstaked,
 } from '../generated/UniV3Staker/UniV3Staker';
 import {Incentive, Position} from '../generated/schema';
 
-
+export function handleRewardClaimed(event: RewardClaimed): void {
+  let incentive = Incentive.load(BigInt.fromI32(1).toHex());
+  if (incentive == null) {
+    incentive = new Incentive(BigInt.fromI32(1).toHex());
+    incentive.liquidity = BigInt.fromI32(0);
+    incentive.claimedToken = BigInt.fromI32(0);
+  }
+  incentive.claimedToken = incentive.claimedToken.plus(event.params.reward);
+}
 export function handleTokenStaked(event: TokenStaked): void {
   let entity = Position.load(event.params.tokenId.toHex());
   let incentive = Incentive.load(BigInt.fromI32(1).toHex());
   if (incentive == null) {
     incentive = new Incentive(BigInt.fromI32(1).toHex());
     incentive.liquidity = BigInt.fromI32(0);
+    incentive.claimedToken = BigInt.fromI32(0);
+
   }
   if (entity != null) {
     entity.staked = true;
@@ -31,6 +41,8 @@ export function handleTokenUnstaked(event: TokenUnstaked): void {
   if (incentive == null) {
     incentive = new Incentive(BigInt.fromI32(1).toHex());
     incentive.liquidity = BigInt.fromI32(0);
+    incentive.claimedToken = BigInt.fromI32(0);
+
   }
   if (entity != null) {
     entity.staked = false;
@@ -49,6 +61,7 @@ export function handleDepositTransferred(event: DepositTransferred): void {
   if (incentive == null) {
     incentive = new Incentive(BigInt.fromI32(1).toHex());
     incentive.liquidity = BigInt.fromI32(0);
+    incentive.claimedToken = BigInt.fromI32(0);
     incentive.save();
   }
   let entity = Position.load(event.params.tokenId.toHex());
