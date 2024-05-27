@@ -6,7 +6,7 @@ dataSources:
     name: NFTPositionsManager
     network: zklink-nova
     source:
-      address: '0x45f84cf9620cecEDaf6742d38F480A5683030fe8'
+      address: '0x18bC9fcD4C14DDdd0086FF4b661D97CF42505075'
       abi: NFTPositionsManager
       startBlock: 0 # when first ewit-usdc nft was created
     mapping:
@@ -30,7 +30,7 @@ dataSources:
     name: UniV3Staker
     network: zklink-nova
     source:
-      address: '0xD8EB3e7094cCe6fC31fA15f192c66760cd6906cb'
+      address: '0xe933dfe5c8D649CFa4cFa9D0af5Ecb2d3606d384'
       abi: UniV3Staker
       startBlock: 0
     mapping:
@@ -58,7 +58,7 @@ dataSources:
     name: Router
     network: zklink-nova
     source:
-      address: '0x8b63A63514598e920Df1c8eCEa91D660F17F7a94'
+      address: '0x1034502C16403b131Fc75A68440824Ba5aC60cb2'
       abi: Router
       startBlock: 0
     mapping:
