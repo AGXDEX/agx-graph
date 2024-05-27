@@ -4,8 +4,6 @@ Subgraph to be used by the [UNI V3 Staker Frontend](https://github.com/vbstreetz
 
 ### Examples
 
-- https://thegraph.com/legacy-explorer/subgraph/vbstreetz/witswap-staking (mainnet)
-- https://thegraph.com/legacy-explorer/subgraph/vbstreetz/witswap-staking-rinkeby (rinkeby)
 
 ### Deployment
 
