@@ -5,7 +5,7 @@ import {
   TokenStaked,
   TokenUnstaked,
 } from '../generated/UniV3Staker/UniV3Staker';
-import {Incentive, Position} from '../generated/schema';
+import {Incentive, TotalReward, Position} from '../generated/schema';
 
 export function handleRewardClaimed(event: RewardClaimed): void {
   let incentive = Incentive.load(BigInt.fromI32(1).toHex());
@@ -15,6 +15,23 @@ export function handleRewardClaimed(event: RewardClaimed): void {
     incentive.claimedToken = BigInt.fromI32(0);
   }
   incentive.claimedToken = incentive.claimedToken.plus(event.params.reward);
+  incentive.save();
+
+
+  let totalReward = TotalReward.load(event.params.to.toHex());
+  if(totalReward == null) {
+    totalReward = new TotalReward(event.params.to.toHex())
+    totalReward.owner = event.params.to;
+    totalReward.reward = event.params.reward
+  }else{
+    totalReward.reward = totalReward.reward.plus(event.params.reward);
+  }
+  totalReward.save();
+
+
+
+
+
 }
 export function handleTokenStaked(event: TokenStaked): void {
   let entity = Position.load(event.params.tokenId.toHex());
@@ -29,9 +46,10 @@ export function handleTokenStaked(event: TokenStaked): void {
     entity.staked = true;
     entity.liquidity = event.params.liquidity;
     entity.incentiveId = event.params.incentiveId;
-    incentive.liquidity = entity.liquidity.plus(entity.liquidity);
-    incentive.save();
     entity.save();
+    incentive.liquidity =  incentive.liquidity.plus(entity.liquidity);
+    incentive.save();
+
   }
 }
 

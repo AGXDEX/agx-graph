@@ -13,6 +13,12 @@ type Incentive @entity{
      claimedToken: BigInt!
 }
 
+type TotalReward @entity{
+      id: ID!
+      owner:  Bytes!
+      reward: BigInt!
+}
+
 
 type Position @entity {
   id: ID!
@@ -35,4 +41,8 @@ type SwapInfo @entity {
   amountOut: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
+}
+
+type UserStakedLiquidity {
+
 }
