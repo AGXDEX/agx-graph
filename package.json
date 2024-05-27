@@ -2,10 +2,10 @@
   "name": "uniswap-v3-staker-subgraph",
   "license": "MIT",
   "scripts": {
-    "build": "graph build -- subgraph-mainnet.yaml",
-    "codegen": "graph codegen -- subgraph-mainnet.yaml",
+    "build": "graph build",
+    "codegen": "graph codegen",
     "create": "graph create agx-staker --node http://127.0.0.1:8020",
-    "deploy": "graph deploy agx-staker --node http://127.0.0.1:8020 --ipfs http://127.0.0.1:5001 -- subgraph-mainnet.yaml",
+    "deploy": "graph deploy agx-staker --node http://127.0.0.1:8020 --ipfs http://127.0.0.1:5001",
     "remove": "graph remove agx-staker --node http://127.0.0.1:8020",
     "codegen:rinkeby": "graph codegen -- subgraph-rinkeby.yaml",
     "build:rinkeby": "graph build -- subgraph-rinkeby.yaml",
