@@ -43,6 +43,3 @@ type SwapInfo @entity {
   transactionHash: Bytes!
 }
 
-type UserStakedLiquidity {
-
-}
