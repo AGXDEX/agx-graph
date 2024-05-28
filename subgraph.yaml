@@ -30,7 +30,7 @@ dataSources:
     name: UniV3Staker
     network: zklink-nova
     source:
-      address: '0xe933dfe5c8D649CFa4cFa9D0af5Ecb2d3606d384'
+      address: '0xCa5A466202d96BD63D464138E22BD8d9FD3f2F2C'
       abi: UniV3Staker
       startBlock: 0
     mapping:
@@ -58,7 +58,7 @@ dataSources:
     name: Router
     network: zklink-nova
     source:
-      address: '0x1034502C16403b131Fc75A68440824Ba5aC60cb2'
+      address: '0x0616B9e771863d5a288EC7b3cd53E48f217650e1'
       abi: Router
       startBlock: 0
     mapping:
