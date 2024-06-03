@@ -74,3 +74,24 @@ dataSources:
         - event: Swap(address,address,address,uint256,uint256)
           handler: handleSwap
       file: ./src/router-mapping.ts
+  - kind: ethereum/contract
+    name: YieldEmission
+    network: zklink-nova
+    source:
+      address: '0xf59AEaD1c5C4C166c0781fD2f79b8f48429c1F2a'
+      abi: YieldEmission
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Swap
+      abis:
+        - name: YieldEmission
+          file: ./abis/YieldEmission.json
+      eventHandlers:
+        - event: ClaimReward(address,address,uint256)
+          handler: handleClaim
+      file: ./src/yield-mapping.ts
+

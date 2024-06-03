@@ -5,7 +5,7 @@ import {
   TokenStaked,
   TokenUnstaked,
 } from '../generated/UniV3Staker/UniV3Staker';
-import {Incentive, TotalReward, Position} from '../generated/schema';
+import {Incentive, TotalReward, Position, SwapInfo, ClaimHistory} from '../generated/schema';
 
 export function handleRewardClaimed(event: RewardClaimed): void {
   let incentive = Incentive.load(BigInt.fromI32(1).toHex());
@@ -28,7 +28,13 @@ export function handleRewardClaimed(event: RewardClaimed): void {
   }
   totalReward.save();
 
-
+  let entity = new ClaimHistory(event.transaction.hash)
+  entity.owner = event.params.to;
+  entity.amount = event.params.reward;
+  entity.blockTimestamp = event.block.timestamp;
+  entity.transactionHash = event.transaction.hash
+  entity.type = BigInt.fromI32(1);
+  entity.save();
 
 
 

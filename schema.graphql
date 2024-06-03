@@ -43,3 +43,12 @@ type SwapInfo @entity {
   transactionHash: Bytes!
 }
 
+type ClaimHistory @entity {
+  id: Bytes!
+  owner: Bytes!
+  amount: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  type: BigInt!
+}
+
