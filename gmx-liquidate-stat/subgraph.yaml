@@ -1,0 +1,41 @@
+specVersion: 0.0.6
+description: GMX
+repository: https://github.com/gmx-io/gmx-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Vault
+    network: zklink-nova
+    source:
+      address: "0xA1332F7F9E475C4Ad84c5F813A1D4B17728950d3"
+      abi: Vault
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - IncreasePosition
+        - DecreasePosition
+        - UpdatePosition
+      abis:
+        - name: Vault
+          file: ./abis/Vault.json
+      # callHandlers: # doesn't work on Arbitrum
+      #   - function: setTokenConfig(address,uint256,uint256,uint256,uint256,bool,bool)
+      #     handler: handleSetTokenConfig
+      eventHandlers:
+
+        - event: IncreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleIncreasePosition
+        - event: DecreasePosition(bytes32,address,address,address,uint256,uint256,bool,uint256,uint256)
+          handler: handleDecreasePosition
+        - event: UpdatePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256,uint256)
+          handler: handleUpdatePosition
+        - event: LiquidatePosition(bytes32,address,address,address,bool,uint256,uint256,uint256,int256,uint256)
+          handler: handleLiquidatePosition
+        - event: ClosePosition(bytes32,uint256,uint256,uint256,uint256,uint256,int256)
+          handler: handleClosePosition
+
+      file: ./src/mapping.ts

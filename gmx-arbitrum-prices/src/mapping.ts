@@ -79,4 +79,3 @@ export function handlePriceUpdate(event: PriceUpdate): void {
   updateCandle(event, "1h")
   updateCandle(event, "4h")
   updateCandle(event, "1d")
-}

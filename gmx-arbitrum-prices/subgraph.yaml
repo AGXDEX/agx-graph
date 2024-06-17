@@ -6,7 +6,7 @@ dataSources:
     name: FastPriceEvents
     network: zklink-nova
     source:
-      address: "0xCfF6bd55DeaBFda2b71a025332FDea84AC261BAB"
+      address: "0x7C94F53690b50d568464EFbaA0dA50f61226DD45"
       abi: FastPriceEvents
       startBlock: 0  # FastPriceEvents was deployed
     mapping:

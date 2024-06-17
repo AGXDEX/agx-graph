@@ -1,0 +1,18 @@
+
+
+type ActivePosition @entity {
+  id: ID! # key
+  averagePrice: BigInt!
+  entryFundingRate: BigInt!
+  collateral: BigInt!
+  size: BigInt!
+  leverage: BigInt!
+  positionInfo: PositionKey!
+}
+
+type PositionKey  @entity {
+   id: ID! # key
+   account: String!
+   indexToken: String!
+   isLong: Boolean!
+}

@@ -35,6 +35,14 @@ type ActivePosition @entity {
   size: BigInt!
 }
 
+type PositionKey  @entity {
+   id: ID! # key
+   account: String!
+   indexToken: String!
+   isLong: Boolean!
+}
+
+
 enum LiquidationType {
   full
   partial
