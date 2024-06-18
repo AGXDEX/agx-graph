@@ -6,7 +6,7 @@ dataSources:
     name: NFTPositionsManager
     network: zklink-nova
     source:
-      address: '0x18bC9fcD4C14DDdd0086FF4b661D97CF42505075'
+      address: '0x27a6F7719735Bcb7A5550Adf745C1623533eD1eA'
       abi: NFTPositionsManager
       startBlock: 0 # when first ewit-usdc nft was created
     mapping:
@@ -30,7 +30,7 @@ dataSources:
     name: UniV3Staker
     network: zklink-nova
     source:
-      address: '0xCa5A466202d96BD63D464138E22BD8d9FD3f2F2C'
+      address: '0x7007d4F00b3CFea4d51E4C4D344E88Bf9381A22b'
       abi: UniV3Staker
       startBlock: 0
     mapping:
@@ -58,7 +58,7 @@ dataSources:
     name: Router
     network: zklink-nova
     source:
-      address: '0x0616B9e771863d5a288EC7b3cd53E48f217650e1'
+      address: '0x6978cC9cCB635fc85a65840a27D3530dB3daDb77'
       abi: Router
       startBlock: 0
     mapping:
@@ -78,7 +78,7 @@ dataSources:
     name: YieldEmission
     network: zklink-nova
     source:
-      address: '0xf59AEaD1c5C4C166c0781fD2f79b8f48429c1F2a'
+      address: '0x79825B294580e441a2c365c23771d9b06b8bfcbF'
       abi: YieldEmission
       startBlock: 0
     mapping:
@@ -94,4 +94,29 @@ dataSources:
         - event: ClaimReward(address,address,uint256)
           handler: handleClaim
       file: ./src/yield-mapping.ts
+  - kind: ethereum/contract
+    name: StakeAGX
+    network: zklink-nova
+    source:
+      address: '0xe7e009f22a2dec7c84048C3912FD454Eee9E3377'
+      abi: StakeAGX
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Staked
+        - UnStake
+      abis:
+        - name: StakeAGX
+          file: ./abis/StakeAGX.json
+      eventHandlers:
+        - event: Staked(indexed address,indexed uint256,uint256,uint256)
+          handler: handleStaked
+        - event: UnStake(indexed address,indexed uint256,uint256)
+          handler: handleUnStake
+        - event: ClaimReward(address,address,uint256)
+          handler: handleClaim
+      file: ./src/stake-agx-mapping.ts
 

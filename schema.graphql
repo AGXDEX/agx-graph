@@ -52,3 +52,17 @@ type ClaimHistory @entity {
   type: BigInt!
 }
 
+type StakeAGX @entity{
+     id: ID!
+    owner: Bytes!
+    amount: BigInt!
+    period: BigInt!
+    startTime: BigInt!
+}
+
+
+type StakeAGXReward @entity{
+       id: ID!
+      owner:  Bytes!
+      reward: BigInt!
+}
