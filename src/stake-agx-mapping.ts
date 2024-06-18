@@ -9,7 +9,7 @@ import {Incentive, TotalReward, Position, SwapInfo, ClaimHistory, StakeAGX, Stak
 
 export function handleStaked(event: Staked): void {
     let entity = new StakeAGX(event.params.id.toHex());
-    entity.owner = event.params.sender;
+    entity.owner = event.params.receiver;
     entity.amount = event.params.amount;
     entity.period = event.params.period;
     entity.startTime = event.block.timestamp;
