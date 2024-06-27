@@ -15,4 +15,5 @@ type PositionKey  @entity {
    account: String!
    indexToken: String!
    isLong: Boolean!
+   collateralToken: String!
 }

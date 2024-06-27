@@ -26,12 +26,12 @@ let FUNDING_PRECISION = BigInt.fromI32(1000000)
 const LIQUIDATOR_ADDRESS = "0x44311c91008dde73de521cd25136fd37d616802c"
 
 export function handleIncreasePosition(event: IncreasePositionEvent): void {
-  _storePositionKey(event.params.key.toHexString(), event.params.account.toHexString(), event.params.indexToken.toHexString(), event.params.isLong);
+
+  _storePositionKey(event.params.key.toHexString(), event.params.account.toHexString(), event.params.indexToken.toHexString(), event.params.isLong,   event.params.collateralToken.toHexString());
 }
 
 export function handleDecreasePosition(event: DecreasePositionEvent): void {
-  _storePositionKey(event.params.key.toHexString(), event.params.account.toHexString(), event.params.indexToken.toHexString(), event.params.isLong);
-
+  _storePositionKey(event.params.key.toHexString(), event.params.account.toHexString(), event.params.indexToken.toHexString(), event.params.isLong,   event.params.collateralToken.toHexString());
 }
 export function handleClosePosition(event: ClosePosition): void {
   store.remove("ActivePosition", event.params.key.toHexString());
@@ -63,13 +63,14 @@ export function handleLiquidatePosition(event: LiquidatePositionEvent): void {
 
 
 
-function _storePositionKey(key: string, account: string, token: string, isLong: boolean): void {
+function _storePositionKey(key: string, account: string, token: string, isLong: boolean, collateralToken: string): void {
   let positionKey = PositionKey.load(key);
   if (positionKey === null) {
       positionKey = new PositionKey(key);
       positionKey.isLong = isLong;
       positionKey.account = account;
       positionKey.indexToken = token;
+      positionKey.collateralToken = collateralToken;
       positionKey.save();
   }
 }
