@@ -1,0 +1,68 @@
+type NFT @entity{
+     id: ID!
+     tokenId: BigInt!
+     token0Amount: BigInt!
+     token1Amount: BigInt!
+     owner: Bytes!
+     liquidity: BigInt
+}
+
+type Incentive @entity{
+     id: ID!
+     liquidity: BigInt!
+     claimedToken: BigInt!
+}
+
+type TotalReward @entity{
+      id: ID!
+      owner:  Bytes!
+      reward: BigInt!
+}
+
+
+type Position @entity {
+  id: ID!
+  tokenId: BigInt!
+  owner: Bytes!
+  staked: Boolean!
+  liquidity: BigInt!
+  incentiveId: Bytes
+  approved: Bytes
+}
+
+
+
+type SwapInfo @entity {
+  id: Bytes!
+  owner: Bytes!
+  tokenIn: Bytes!
+  tokenOut: Bytes!
+  amountIn: BigInt!
+  amountOut: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClaimHistory @entity {
+  id: Bytes!
+  owner: Bytes!
+  amount: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  type: BigInt!
+}
+
+type StakeAGX @entity{
+     id: ID!
+    owner: Bytes!
+    amount: BigInt!
+    period: BigInt!
+    startTime: BigInt!
+}
+
+
+type StakeAGXReward @entity{
+       id: ID!
+      owner:  Bytes!
+      reward: BigInt!
+}
